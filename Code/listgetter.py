@@ -67,7 +67,3 @@ class Lists:
             return False
 
 
-test = Lists(os.path.dirname(os.path.abspath(__file__))+"/Lists")
-
-print(test.changeTo("task", True, "test"))
-
