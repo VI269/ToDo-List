@@ -56,8 +56,18 @@ class Lists:
                 json.dump(dictionary,f)
         except:
             return False
+    
+    def changeTo(self, task, completion, listed):
+        try:
+            lis = self.getList(listed)
+            lis[task] = completion
+            self.changeList(listed, lis)
+            return
+        except:
+            return False
+
 
 test = Lists(os.path.dirname(os.path.abspath(__file__))+"/Lists")
 
-print(test.searchTask("task"))
+print(test.changeTo("task", True, "test"))
 
