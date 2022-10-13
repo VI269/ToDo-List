@@ -24,7 +24,7 @@ class Lists:
         return [f for f in glob.glob(self.path+"/*.json")]
 
     def totalListsSelf(self):
-        return [glob.glob("/Lists/*.json")]
+        return [glob.glob()"/*.json"]
     
     def searchTask(self, task):
         taskFound = []
