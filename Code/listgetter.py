@@ -21,23 +21,24 @@ class Lists:
             return "List Not Found"
     
     def totalLists(self):
-        return [f for f in glob.glob(self.path+"/*.json")]
-
-    def totalListsSelf(self):
-        return [glob.glob()"/*.json"]
+        start = [f for f in glob.glob(self.path+"/*.json")]
+        out = []
+        for lis in start:
+            out.append((lis.split('/')[-1])[:-5])
+        return out
     
     def searchTask(self, task):
-        taskFound = []
-        for _task in self.getDefaultList().keys():
-            if _task == task:
-                taskFound.append(self.getDefaultList()[_task])
+        tasks_found = []
+        for defTask, defProg in self.getDefaultList().items():
+            if defTask == task:
+                tasks_found.append(defProg)
         
-        for file in self.totalListsSelf().keys():
-            for task in self.getList(file):
-                if _task == task:
-                    taskFound.append(file[_task])
+        for lists in self.totalLists():
+            for tas, prog in self.getList(lists).items():
+                if tas == task:
+                    tasks_found.append(prog)
         
-        return taskFound
+        return None if tasks_found == [] else tasks_found
     
     def createList(self, name):
         with open(self.path+f"/{name}.json", 'w') as f:
@@ -58,5 +59,5 @@ class Lists:
 
 test = Lists(os.path.dirname(os.path.abspath(__file__))+"/Lists")
 
-print(test.totalListsSelf())
+print(test.searchTask("task"))
 
